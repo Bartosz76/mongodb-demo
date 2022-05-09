@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Component means the class will be managed by Spring Context.
@@ -40,6 +41,13 @@ public class MongoDbConfig {
         article.setCommentList(Arrays.asList(commentOne, commentTwo));
 
         mongoTemplate.insert(article);
+
+        /**
+         * Below means I want to get all Articles.
+         */
+        List<Article> all = mongoTemplate.findAll(Article.class);
+
+        System.out.println(all);
     }
 
 }
